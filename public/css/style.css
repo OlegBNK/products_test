@@ -1,0 +1,20 @@
+body {
+    background-color: #636b6f;
+    background-color: #464d54;
+    /*background-color: #897054;*/
+}
+
+.container {
+    width: 1300px;
+    background-color: ivory;
+    margin-top: 94px;
+}
+
+.container-head{
+    margin-bottom: 15px;
+}
+
+.container-body {
+    margin-top: 10px;
+}
+
