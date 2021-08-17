@@ -13,9 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect('products');
-});
+Route::redirect('/', 'products');
 
 Route::match(['get'], '/products', 'ProductsController@products')->name('products');
 Route::match(['get'], '/product-list', 'ProductsController@productsList')->name('productsList');
+Route::match(['post'],'/productsList/addProduct', 'ProductsController@addProduct')->name('addProduct'); // get post
+Route::match(['get', 'post'],'/productsList/productSelection/{id}', 'ProductsController@productSelection')->name('productSelection');
+Route::match(['get'],'/productsList/deleteProduct/{id}', 'ProductsController@deleteProduct')->name('deleteProduct');
+Route::match(['post'],'/productsList/updateProduct/{id}', 'ProductsController@updateProduct')->name('updateProduct');

@@ -1,7 +1,5 @@
 body {
-    background-color: #636b6f;
-    background-color: #464d54;
-    /*background-color: #897054;*/
+    background-color: rgb(68, 87, 96);
 }
 
 .container {
@@ -10,11 +8,54 @@ body {
     margin-top: 94px;
 }
 
-.container-head{
+.container-head {
     margin-bottom: 15px;
 }
 
 .container-body {
     margin-top: 10px;
+    padding-bottom: 15px;
 }
 
+.container-body-card {
+    margin-bottom: 12px;
+}
+
+.container-body-card-image {
+    width: 100%;
+}
+
+.container-body-card-text{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.container-body-card-price{
+    text-align: center;
+}
+
+.container-col-image {
+    width: 264px;
+}
+
+.container-col-name {
+    width: 145px;
+}
+
+.container-col-tittle {
+    width: 255px;
+}
+
+.container-body-card-text-product-list{
+    width: 255px;
+    display: -webkit-box;
+    -webkit-line-clamp: 12;
+    -webkit-box-orient: vertical;
+    overflow-y: scroll;
+}
+
+.container-col-price {
+    width: 92px;
+}

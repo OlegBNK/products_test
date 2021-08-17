@@ -1,5 +1,5 @@
 @extends('products/layout/layout')
-@section('tittle', 'Список продуктов')
+@section('tittle', "изменение $product->name")
 
 @section('contentMenu')
     <div class="container-head">
@@ -8,7 +8,7 @@
                 <a class="nav-link" href="{{ route('products') }}">Продукты</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{route('productsList')}}">Список продуктов</a>
+                <a class="nav-link" href="{{route('productsList')}}">Список продуктов</a>
             </li>
         </ul>
     </div>
@@ -30,58 +30,44 @@
             </thead>
             <tbody>
             <tr>
-
-                <form method="post" action="{{route('addProduct')}}" enctype="multipart/form-data">
+                <form method="post" action="{{route('updateProduct', $product->id)}}" enctype="multipart/form-data">
                     @csrf
-                    <th class="container-col-order" scope="row"></th>
+                    <th class="container-col-order" scope="row">{{$product->id}}</th>
                     <td>
                         <div class="form-group">
+                            <img
+                                width="100%"
+                                src="{{(isset($product->image)) ? \Illuminate\Support\Facades\Storage::url($product->image) : \Illuminate\Support\Facades\Storage::url('noimage.png')}}">
                             <input type="file" name="image" class="form-control-file container-col-image"
                                    id="exampleFormControlFile1">
                         </div>
                     </td>
                     <td>
                         <input type="text" name="name" class="form-control container-col-name" id="name"
-                               placeholder="Название" required>
+                               value="{{($product->name)}}" required>
                     </td>
                     <td>
                         <div class="form-group">
                             <textarea name="tittle" class="form-control container-col-tittle" id="tittle"
-                                      rows="2"></textarea>
+                                      rows="12">{{$product->tittle}}</textarea>
                         </div>
                     </td>
                     <td class="container-col-price">
                         <input type="hidden" name="" value="price"/>
                         <input type="number" name="price" step="0.01" min="0.01"
                                class="form-control form-control-user container-col-price" id="validationCustom03"
-                               placeholder="цена" required>
+                               value="{{$product->price}}" required>
                     </td>
                     <td>
-                        <button class="button btn btn-success" type="submit">Добавить</button>
+                        <button class="button btn btn-warning" type="submit">Изменить</button>
                     </td>
-                    <td></td>
+                    <td>
+                        <a href="{{route('deleteProduct', $product->id)}}" class="button btn btn-danger">Удалить</a>
+                    </td>
                 </form>
             </tr>
-            @foreach($products as $product)
-                <tr>
-                    <th scope="row">{{$product->id}}</th>
-                    <td><img class="container-body-card-image"
-                             src="{{(isset($product->image)) ? \Illuminate\Support\Facades\Storage::url($product->image) : \Illuminate\Support\Facades\Storage::url('noimage.png')}}">
-                    </td>
-                    <td>{{(isset($product->name)) ? $product->name : ""}}</td>
-                    <td class="container-body-card-text-product-list">{{(isset($product->tittle)) ? $product->tittle : ""}}</td>
-                    <td>{{$product->price}} грн</td>
-                    <td>
-                        <button class="button btn btn-warning" type="submit"><a
-                                href="{{route('productSelection', $product->id)}}">Изменить</button>
-                    </td>
-                    <td>
-                        <button class="button btn btn-danger" type="submit"><a
-                                href="{{route('deleteProduct', $product->id)}}">Удалить</a></button>
-                    </td>
-                </tr>
-            @endforeach
             </tbody>
+
         </table>
     </div>
 @endsection
